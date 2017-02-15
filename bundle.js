@@ -27096,7 +27096,7 @@ var Lists = function (_Component2) {
         _react2.default.createElement(
           "h1",
           null,
-          "111111111111111111111111"
+          "89888"
         )
       );
     }
@@ -27184,6 +27184,11 @@ var Me = function (_Component6) {
   }
 
   _createClass(Me, [{
+    key: "routerWillLeave",
+    value: function routerWillLeave(nextLocation) {
+      return "\u9875\u9762\u5373\u5C06\u4ECEMe\u5207\u6362\u5230" + nextLocation.pathname;
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react2.default.createElement(
@@ -27192,10 +27197,19 @@ var Me = function (_Component6) {
         "this is me"
       );
     }
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.context.router.setRouteLeaveHook(this.props.route, this.routerWillLeave);
+    }
   }]);
 
   return Me;
 }(_react.Component);
+
+Me.contextTypes = {
+  router: _react2.default.PropTypes.object
+};
 
 var App = function (_Component7) {
   _inherits(App, _Component7);
@@ -27230,7 +27244,7 @@ var Renders = function Renders() {
       _react2.default.createElement(_reactRouter.IndexRoute, { component: Home }),
       _react2.default.createElement(_reactRouter.Route, { path: "/about", component: About }),
       _react2.default.createElement(_reactRouter.Route, { path: "/list", component: List }),
-      _react2.default.createElement(_reactRouter.Route, { path: "/me", component: Me })
+      _react2.default.createElement(_reactRouter.Route, { path: "/:name", component: Me })
     )
   );
 };

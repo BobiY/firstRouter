@@ -1,3 +1,4 @@
+var webpack = require("webpack");
 module.exports = {
   entry:__dirname + "/App/app.js",
   output:{
@@ -16,11 +17,16 @@ module.exports = {
     ]
   },
   devServer:{
-    publicPath: __dirname,
+    contentBase: __dirname,
     stats: {
         colors: true
     },
-    hot:true,
-    inline:true
-  }
+    historyApiFallback:true,
+    inline:true,
+    port:3000,
+    hot:true
+  },
+  plugins:[
+    new webpack.HotModuleReplacementPlugin()
+  ]
 };
